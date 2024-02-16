@@ -27,11 +27,11 @@ const Navbar = () => {
           <Link to="/" className="p-4">
             Home
           </Link>
-          <Link to="/services" className="p-4">
-            Services
+          <Link to="/pricing" className="p-4">
+            Pricing
           </Link>
-          <Link to="/products" className="p-4">
-            Products
+          <Link to="https://app.invoicewala.com" className="p-4">
+            Portal
           </Link>
           <Link to="/contact" className="p-4">
             Contact

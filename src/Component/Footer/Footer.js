@@ -60,11 +60,11 @@ const Footer = () => {
                     <Link to="/" className="block">
                         Home
                     </Link>
-                    <Link to="/services" className="block">
-                        Services
+                    <Link to="/pricing" className="block">
+                        Pricing
                     </Link>
-                    <Link to="/products" className="block">
-                        Products
+                    <Link to="https://app.invoicewala.com" className="block">
+                        Portal
                     </Link>
                     <Link to="/contact" className="block">
                         Contact

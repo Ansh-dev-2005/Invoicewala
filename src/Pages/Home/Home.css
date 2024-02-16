@@ -1,11 +1,34 @@
-/* .slick-list{
-    width: 100vw;
-    margin-left: 10px;
-    margin-right: 10px;
+.feature{
+    height: 320px;
+ 
+    padding: 6px;
+    padding-top: 12px;
+    padding-bottom: auto;
 }
-.slick-track{
-    width: 100vw;
+.feature_logo{
+    width: 300px !important;
 }
-.slick-dots{
-    width: 100vw;
-} */
+
+.img-fluid{
+    width: 353px;
+}
+.feature_single {
+  opacity: 0;
+  transform: translateY(20px); /* Initially, move features 20px down */
+  transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth transition */
+}
+.feature_single.visible {
+  opacity: 1;
+  transform: translateY(0); /* Move features back to their original position */
+}
+.home{
+    /* add smooth scroll */
+    scroll-behavior: smooth;
+    
+
+
+}
+
+.feature img{
+  width: 58px;
+}
