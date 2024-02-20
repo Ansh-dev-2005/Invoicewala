@@ -10,7 +10,7 @@ import {
   FaShareAltSquare,
 } from "react-icons/fa";
 import Xmark_cross from "../../assets/svg/Xmark-solid.svg";
-import background from "../../assets/images/background.png";
+import background from "../../assets/images/zero-waste-shop-merchant-sells-lentils.jpg";
 import gear_logo from "../../assets/svg/gear-solid.svg";
 import share_logo from "../../assets/svg/share-from-square-solid.svg";
 import whatsapp_logo from "../../assets/svg/whatsapp.svg";
@@ -40,6 +40,27 @@ import { images } from "../../assets/images/new1";
 
 const Home = () => {
   const [isSmallDevice, setIsSmallDevice] = useState(false);
+
+  useEffect(() => {
+    const timelineElements = document.querySelectorAll(".feature_single");
+    const windowBottom = window.innerHeight;
+
+    function checkTimeline() {
+      timelineElements.forEach((element) => {
+        const elementTop = element.getBoundingClientRect().top;
+        if (elementTop < windowBottom) {
+          element.classList.add("show");
+        } else {
+          element.classList.remove("show");
+        }
+      });
+    }
+
+    window.addEventListener("scroll", checkTimeline);
+    checkTimeline(); // Check initially on mount
+
+    return () => window.removeEventListener("scroll", checkTimeline);
+  }, []); // Empty dependency array to run only once on mount
 
   useEffect(() => {
     const handleResize = () => {
@@ -107,41 +128,40 @@ const Home = () => {
       },
     ],
   };
-  const controller = new ScrollMagic.Controller();
-function initScrollMagic() {
-   // Check if it's not a small device
-    document.querySelectorAll(".feature_single").forEach(function (feature) {
-      new ScrollMagic.Scene({
-        triggerElement: feature,
-        triggerHook: 0.8, // Adjust as needed
-        offset: 100, // Adjust as needed
-        reverse: false, // Animation only happens once
-      })
-        .setClassToggle(feature, "visible") // Add a class to show the feature
-        .addIndicators() // For debugging purposes
-        .addTo(controller);
-    });
-  
-}
+  // const controller = new ScrollMagic.Controller();
+  // function initScrollMagic() {
+  //   // Check if it's not a small device
+  //   document.querySelectorAll(".feature_single").forEach(function (feature) {
+  //     new ScrollMagic.Scene({
+  //       triggerElement: feature,
+  //       triggerHook: 0.8, // Adjust as needed
+  //       offset: 100, // Adjust as needed
+  //       reverse: false, // Animation only happens once
+  //     })
+  //       .setClassToggle(feature, "visible") // Add a class to show the feature
+  //       .addIndicators() // For debugging purposes
+  //       .addTo(controller);
+  //   });
+  // }
 
-// Reinitialize ScrollMagic when the page is reloaded
-window.addEventListener("beforeunload", function () {
-  controller.destroy(); // Destroy the existing controller
-});
+  // // Reinitialize ScrollMagic when the page is reloaded
+  // window.addEventListener("beforeunload", function () {
+  //   controller.destroy(); // Destroy the existing controller
+  // });
 
-// Reinitialize ScrollMagic when the page is reloaded
-window.addEventListener("load", function () {
-  initScrollMagic(); // Reinitialize ScrollMagic
-});
-window.addEventListener("load", function () {
-  initScrollMagic(); // Reinitialize ScrollMagic
-});
+  // // Reinitialize ScrollMagic when the page is reloaded
+  // window.addEventListener("load", function () {
+  //   initScrollMagic(); // Reinitialize ScrollMagic
+  // });
+  // window.addEventListener("load", function () {
+  //   initScrollMagic(); // Reinitialize ScrollMagic
+  // });
 
   return (
     <div className="home">
       {/* Hero section */}
       <div
-        className="hero bg-gray-100 text-white flex flex-col  p-7 md:flex-row items-center justify-center md:h-screen p-4 bg-opacity-50 relative"
+        className="hero bg-gray-100 text-white flex flex-col p-7 md:flex-row items-center justify-center md:h-screen p-4 bg-opacity-50 relative"
         style={{
           backgroundImage: `url(${background})`,
           backgroundSize: "cover",
@@ -153,10 +173,10 @@ window.addEventListener("load", function () {
 
           {/* Content */}
           <h1 className="font-normal text-4xl md:text-7xl md:font-medium  relative text-center z-10">
-            InvoiceWala
+            Your Invoice Manager
           </h1>
-          <p className="mt-2 text-center md:mt-5 text-lg z-10">
-            Create and send professional invoices in minutes
+          <p className="mt-4 text-center md:mt-6 text-lg z-10">
+            Paper-less Multi channel Invoice sharing Platform{" "}
           </p>
           <Link
             to="/signup"
@@ -271,10 +291,10 @@ window.addEventListener("load", function () {
           </h2>
           <div className=" mt-5 md:mt-10">
             <Slider {...settings}>
-              <div className="features">
+              <div className="feature">
                 <img src={invoice} alt="feature" className="w-20 mx-auto" />
                 <h3 className="text-lg md:text-xl font-bold text-gray-800 mt-3 md:mt-5">
-                  Instant Invoice Sharing: Simplified
+                  Paperless Invoice Sharing
                 </h3>
                 <p className="text-gray-600 mt-2 md:mt-3 text-sm md:text-base">
                   InvoiceWala offers seamless invoice delivery to your
@@ -336,9 +356,9 @@ window.addEventListener("load", function () {
       {/* Discover Superior Solutions, Develop Exceptional Products. section */}
       <div className="bg-gray-100 text-gray-700 px-8 py-10 md:py-20">
         <div className="container mx-auto w-full text-center">
-          <h2 className="text-3xl font-bold">Discover Superior Solutions</h2>
+          <h2 className="text-3xl font-bold">Our Solutions</h2>
           <p className="mt-2 md:mt-3">
-            Develop Exceptional Products. We are here to help you
+            Innovative & Benchmarking Solution for Digital Invoicing
           </p>
           {/* show features in card */}
           {/* with logo and title and its details */}
@@ -510,7 +530,7 @@ window.addEventListener("load", function () {
             )} */}
 
             <>
-              <div className="feature_container block  md:hidden ">
+              <div className="feature_container hidden ">
                 <div className="feature_singles container py-5">
                   <div className="row align-items-center flex">
                     <div className="col-md-6">
@@ -524,12 +544,11 @@ window.addEventListener("load", function () {
                       <h3 className="text-lg text text-left font-bold mt-3">
                         A Game-Changer
                       </h3>
-                      <p className=" pt-2 mt-4 text-gray-700 text-left font-weight-normal ">
+                      <p className=" pt-2 mt-4 text-gray-700 text-left font-medium  ">
                         Boost efficiency with our revolutionary ‘WhatsApp
-                        Invoice Sending’ feature. With a simple click, your
-                        invoices reach your client’s WhatsApp, offering a
-                        seamless user experience and quickening the payment
-                        process.{" "}
+                        Invoice Sending’ feature. With a simple click or without
+                        click, your invoices will reach to your customers'
+                        WhatsApp to provide a seamless user experience.{" "}
                       </p>
                     </div>
                   </div>
@@ -537,28 +556,29 @@ window.addEventListener("load", function () {
 
                 <div className="feature_singles container py-5">
                   <div className="row align-items-center flex">
-                    <div className="col-md-6 order-last">
+                    <div className="col-md-6  md:order-last">
                       <img
                         src={images.pic_integration}
                         alt="feature"
                         className="w-12 feature_logo mx-auto"
                       />
                     </div>
-                    <div className="col-md-6 order-first">
+                    <div className="col-md-6  md:order-first">
                       <h3 className="text-lg font-bold text-left mt-3">
-                        Autonomous Invoicing
+                        Automatic Invoicing
                       </h3>
-                      <p className="mt-2 pt-2 text-left text-sm">
+                      <p className="mt-2 pt-2 text-left text-sm font-medium">
                         Eliminate manual steps and time-consuming tasks. Our
-                        integration with abcdef guarantees your invoices are
-                        automatically transmitted, making the ordeal of opening
-                        WhatsApp’s web or desktop versions a thing of the past.{" "}
+                        solution guarantees your invoices are automatically
+                        transmitted to customer. No need of opening WhatsApp’s
+                        web or desktop versions or to save and mail
+                        to share invoice.{" "}
                       </p>
                     </div>
                   </div>
                 </div>
 
-                <div className="feature_singles container py-5">
+                <div className="feature_singles container py-5 ">
                   <div className="row align-items-center flex">
                     <div className="col-md-6">
                       <img
@@ -569,31 +589,30 @@ window.addEventListener("load", function () {
                     </div>
                     <div className="col-md-6">
                       <h3 className="text-lg text-left font-bold mt-3">
-                        Say No to Print
+                        Eco-friendly Invoicing
                       </h3>
-                      <p className="mt-2 pt-2 text-left text-sm">
-                        If you’re exploring an ‘Alternative to Invoice
-                        Printing’, our platform is your answer. Transmitting
-                        invoices becomes as intuitive as printing one, without
-                        the paper waste.
+                      <p className="mt-2 pt-2 text-left text-sm font-medium">
+                        Our solution is an ‘Alternative to Invoice Printing’. It
+                        is an eco friendly solution which transmits invoices
+                        without the wasting paper. We take care of our earth.
                       </p>
                     </div>
                   </div>
                 </div>
                 <div className="feature_singles container py-5">
                   <div className="row align-items-center flex">
-                    <div className="col-md-6 order-last">
+                    <div className="col-md-6  md:order-last">
                       <img
                         src={images.pic_sms}
                         alt="feature"
                         className="w-12 feature_logo mx-auto"
                       />
                     </div>
-                    <div className="col-md-6 order-first">
+                    <div className="col-md-6  md:order-first">
                       <h3 className="text-lg text-left font-bold mt-3">
                         Send Invoice through SMS
                       </h3>
-                      <p className="mt-2 pt-2 text-left text-sm">
+                      <p className="mt-2 pt-2 text-left text-sm font-medium">
                         Beyond WhatsApp, we understand the power of SMS in
                         reaching customers. Integrate our ‘Send Invoice through
                         SMS’ feature to tap into another efficient channel for
@@ -616,7 +635,7 @@ window.addEventListener("load", function () {
                       <h3 className="text-lg text-left font-bold mt-3">
                         Swift and Simple Software Integration
                       </h3>
-                      <p className="mt-2 pt-2 text-left text-sm">
+                      <p className="mt-2 pt-2 text-left text-sm font-medium">
                         From ERPs to custom solutions, easily blend our WhatsApp
                         invoicing feature into your existing software. Elevate
                         your software’s potential, making ‘Bill to WhatsApp’ a
@@ -628,18 +647,18 @@ window.addEventListener("load", function () {
 
                 <div className="feature_singles container py-5">
                   <div className="row align-items-center flex">
-                    <div className="col-md-6 order-last">
+                    <div className="col-md-6  md:order-last">
                       <img
                         src={images.pic_email}
                         alt="feature"
                         className="w-12 feature_logo mx-auto"
                       />
                     </div>
-                    <div className="col-md-6 order-first">
+                    <div className="col-md-6  md:order-first">
                       <h3 className="text-lg text-left font-bold mt-3">
                         Share Invoice on Email
                       </h3>
-                      <p className="mt-2 pt-2 text-left text-sm">
+                      <p className="mt-2 pt-2 text-left text-sm font-medium">
                         Our platform is designed to offer a variety of channels
                         for sharing invoices. With our ‘Share Invoice on Email’
                         feature, your clients can receive invoices directly in
@@ -660,12 +679,14 @@ window.addEventListener("load", function () {
                     </div>
                     <div className="col-md-6">
                       <h3 className="text-lg pt-2 text-left font-bold mt-3">
-                        Zero-Cost Start and Flexible Billing
+                        Flexible & Transparent Billing
                       </h3>
-                      <p className="mt-2 text-left text-sm">
-                        Begin your journey with no implementation fees. Our
-                        flexible pay-as-you-go model ensures you pay only for
-                        what you use.{" "}
+                      <p className="mt-2 text-left text-sm font-medium">
+                        Our solution is design to cater for all type of
+                        enterprises with flexible fees structure. You can begin
+                        your journey with us with a small implementation fees.
+                        Our flexible pay-as-you-go model ensures you pay only
+                        for what you use.{" "}
                       </p>
                     </div>
                   </div>
@@ -673,18 +694,18 @@ window.addEventListener("load", function () {
 
                 <div className="feature_singles container py-5">
                   <div className="row align-items-center flex">
-                    <div className="col-md-6 order-last">
+                    <div className="col-md-6  md:order-last">
                       <img
                         src={images.pic_secure}
                         alt="feature"
                         className="w-12 feature_logo mx-auto"
                       />
                     </div>
-                    <div className="col-md-6 order-first">
+                    <div className="col-md-6  md:order-first">
                       <h3 className="text-lg text-left font-bold mt-3">
                         Unparalleled Security in Invoice Sharing
                       </h3>
-                      <p className="mt-2 pt-2 text-left text-sm">
+                      <p className="mt-2 pt-2 text-left text-sm font-medium">
                         We prioritize the safeguarding of your data. Our secure
                         login ensures every ‘Invoice sharing without Printing’
                         is safe and confidential.{" "}
@@ -706,7 +727,7 @@ window.addEventListener("load", function () {
                       <h3 className="text-lg text-left font-bold mt-3">
                         Adaptable Application for All
                       </h3>
-                      <p className="mt-2 text-left pt-2 text-sm">
+                      <p className="mt-2 text-left pt-2 text-sm font-medium">
                         Stay online and connected with our versatile,
                         Windows-based application, designed for businesses
                         seeking an efficient invoencing solution.{" "}
@@ -717,18 +738,18 @@ window.addEventListener("load", function () {
 
                 <div className="feature_singles container py-5">
                   <div className="row align-items-center flex">
-                    <div className="col-md-6 order-last">
+                    <div className="col-md-6  md:order-last">
                       <img
                         src={images.pic_dashboard}
                         alt="feature"
                         className="w-12 feature_logo mx-auto"
                       />
                     </div>
-                    <div className="col-md-6 order-first">
-                      <h3 className="text-lg text-left font-bold mt-3">
+                    <div className="col-md-6  md:order-first">
+                      <h3 className="text-lg text-left font-bold mt-3 ">
                         Holistic View through Web Dashboard
                       </h3>
-                      <p className="mt-2 text-left pt-2 text-sm">
+                      <p className="mt-2 text-left pt-2 text-sm font-medium">
                         From usage metrics to tracking, our web-based dashboard
                         offers a comprehensive view of your operations, making
                         invoice management a breeze.{" "}
@@ -750,7 +771,7 @@ window.addEventListener("load", function () {
                       <h3 className="text-lg text-left font-bold mt-3">
                         AI-Enhanced Precision in Mobile Number Identification
                       </h3>
-                      <p className="mt-2 pt-2 text-left text-sm">
+                      <p className="mt-2 pt-2 text-left text-sm font-medium">
                         Our futuristic AI-driven feature ensures invoices are
                         accurately delivered, championing efficiency in every
                         ‘Bill to WhatsApp’ endeavor.{" "}
@@ -759,7 +780,7 @@ window.addEventListener("load", function () {
                   </div>
                 </div>
               </div>
-              <div className="feature_container hidden md:block ">
+              <div className="feature_container block ">
                 <div className="feature_single container py-5">
                   <div className="row align-items-center flex">
                     <div className="col-md-6">
@@ -771,14 +792,13 @@ window.addEventListener("load", function () {
                     </div>
                     <div className="col-md-6">
                       <h3 className="text-lg text text-left font-bold mt-3">
-                        A Game-Changer
+                        Share Invoice via WhatsApp{" "}
                       </h3>
-                      <p className=" pt-2 mt-4 text-gray-700 text-left font-weight-normal ">
+                      <p className=" pt-2 mt-4 text-gray-700 text-left font-medium ">
                         Boost efficiency with our revolutionary ‘WhatsApp
-                        Invoice Sending’ feature. With a simple click, your
-                        invoices reach your client’s WhatsApp, offering a
-                        seamless user experience and quickening the payment
-                        process.{" "}
+                        Invoice Sending’ feature. With a simple click or without
+                        click, your invoices will reach to your customers'
+                        WhatsApp to provide a seamless user experience.{" "}
                       </p>
                     </div>
                   </div>
@@ -786,22 +806,23 @@ window.addEventListener("load", function () {
 
                 <div className="feature_single container py-5">
                   <div className="row align-items-center flex">
-                    <div className="col-md-6 order-last">
+                    <div className="col-md-6  md:order-last">
                       <img
                         src={images.pic_integration}
                         alt="feature"
                         className="w-12 feature_logo mx-auto"
                       />
                     </div>
-                    <div className="col-md-6 order-first">
+                    <div className="col-md-6  md:order-first">
                       <h3 className="text-lg font-bold text-left mt-3">
-                        Autonomous Invoicing
+                        Automatic Sharing
                       </h3>
-                      <p className="mt-2 pt-2 text-left text-sm">
+                      <p className="mt-2 pt-2 text-left  font-medium">
                         Eliminate manual steps and time-consuming tasks. Our
-                        integration with abcdef guarantees your invoices are
-                        automatically transmitted, making the ordeal of opening
-                        WhatsApp’s web or desktop versions a thing of the past.{" "}
+                        solution guarantees your invoices are automatically
+                        transmitted to customer. No need of opening WhatsApp’s
+                        web or desktop versions or to save and mail
+                        to share invoice.{" "}
                       </p>
                     </div>
                   </div>
@@ -818,31 +839,30 @@ window.addEventListener("load", function () {
                     </div>
                     <div className="col-md-6">
                       <h3 className="text-lg text-left font-bold mt-3">
-                        Say No to Print
+                        Eco-friendly Invoicing
                       </h3>
-                      <p className="mt-2 pt-2 text-left text-sm">
-                        If you’re exploring an ‘Alternative to Invoice
-                        Printing’, our platform is your answer. Transmitting
-                        invoices becomes as intuitive as printing one, without
-                        the paper waste.
+                      <p className="mt-2 pt-2 text-left  font-medium">
+                        Our solution is an ‘Alternative to Invoice Printing’. It
+                        is an eco friendly solution which transmits invoices
+                        without the wasting paper. We take care of our earth.
                       </p>
                     </div>
                   </div>
                 </div>
                 <div className="feature_single container py-5">
                   <div className="row align-items-center flex">
-                    <div className="col-md-6 order-last">
+                    <div className="col-md-6  md:order-last">
                       <img
                         src={images.pic_sms}
                         alt="feature"
                         className="w-12 feature_logo mx-auto"
                       />
                     </div>
-                    <div className="col-md-6 order-first">
+                    <div className="col-md-6  md:order-first">
                       <h3 className="text-lg text-left font-bold mt-3">
                         Send Invoice through SMS
                       </h3>
-                      <p className="mt-2 pt-2 text-left text-sm">
+                      <p className="mt-2 pt-2 text-left  font-medium">
                         Beyond WhatsApp, we understand the power of SMS in
                         reaching customers. Integrate our ‘Send Invoice through
                         SMS’ feature to tap into another efficient channel for
@@ -865,7 +885,7 @@ window.addEventListener("load", function () {
                       <h3 className="text-lg text-left font-bold mt-3">
                         Swift and Simple Software Integration
                       </h3>
-                      <p className="mt-2 pt-2 text-left text-sm">
+                      <p className="mt-2 pt-2 text-left  font-medium">
                         From ERPs to custom solutions, easily blend our WhatsApp
                         invoicing feature into your existing software. Elevate
                         your software’s potential, making ‘Bill to WhatsApp’ a
@@ -877,18 +897,18 @@ window.addEventListener("load", function () {
 
                 <div className="feature_single container py-5">
                   <div className="row align-items-center flex">
-                    <div className="col-md-6 order-last">
+                    <div className="col-md-6  md:order-last">
                       <img
                         src={images.pic_email}
                         alt="feature"
                         className="w-12 feature_logo mx-auto"
                       />
                     </div>
-                    <div className="col-md-6 order-first">
+                    <div className="col-md-6  md:order-first">
                       <h3 className="text-lg text-left font-bold mt-3">
                         Share Invoice on Email
                       </h3>
-                      <p className="mt-2 pt-2 text-left text-sm">
+                      <p className="mt-2 pt-2 text-left  font-medium">
                         Our platform is designed to offer a variety of channels
                         for sharing invoices. With our ‘Share Invoice on Email’
                         feature, your clients can receive invoices directly in
@@ -909,12 +929,14 @@ window.addEventListener("load", function () {
                     </div>
                     <div className="col-md-6">
                       <h3 className="text-lg pt-2 text-left font-bold mt-3">
-                        Zero-Cost Start and Flexible Billing
+                        Flexible & Transparent Billing
                       </h3>
-                      <p className="mt-2 text-left text-sm">
-                        Begin your journey with no implementation fees. Our
-                        flexible pay-as-you-go model ensures you pay only for
-                        what you use.{" "}
+                      <p className="mt-2 text-left  font-medium">
+                        Our solution is design to cater for all type of
+                        enterprises with flexible fees structure. You can begin
+                        your journey with us with a small implementation fees.
+                        Our flexible pay-as-you-go model ensures you pay only
+                        for what you use.{" "}
                       </p>
                     </div>
                   </div>
@@ -922,18 +944,18 @@ window.addEventListener("load", function () {
 
                 <div className="feature_single container py-5">
                   <div className="row align-items-center flex">
-                    <div className="col-md-6 order-last">
+                    <div className="col-md-6  md:order-last">
                       <img
                         src={images.pic_secure}
                         alt="feature"
                         className="w-12 feature_logo mx-auto"
                       />
                     </div>
-                    <div className="col-md-6 order-first">
+                    <div className="col-md-6  md:order-first">
                       <h3 className="text-lg text-left font-bold mt-3">
                         Unparalleled Security in Invoice Sharing
                       </h3>
-                      <p className="mt-2 pt-2 text-left text-sm">
+                      <p className="mt-2 pt-2 text-left  font-medium">
                         We prioritize the safeguarding of your data. Our secure
                         login ensures every ‘Invoice sharing without Printing’
                         is safe and confidential.{" "}
@@ -955,7 +977,7 @@ window.addEventListener("load", function () {
                       <h3 className="text-lg text-left font-bold mt-3">
                         Adaptable Application for All
                       </h3>
-                      <p className="mt-2 text-left pt-2 text-sm">
+                      <p className="mt-2 text-left pt-2  font-medium">
                         Stay online and connected with our versatile,
                         Windows-based application, designed for businesses
                         seeking an efficient invoencing solution.{" "}
@@ -966,18 +988,18 @@ window.addEventListener("load", function () {
 
                 <div className="feature_single container py-5">
                   <div className="row align-items-center flex">
-                    <div className="col-md-6 order-last">
+                    <div className="col-md-6  md:order-last">
                       <img
                         src={images.pic_dashboard}
                         alt="feature"
                         className="w-12 feature_logo mx-auto"
                       />
                     </div>
-                    <div className="col-md-6 order-first">
+                    <div className="col-md-6  md:order-first">
                       <h3 className="text-lg text-left font-bold mt-3">
                         Holistic View through Web Dashboard
                       </h3>
-                      <p className="mt-2 text-left pt-2 text-sm">
+                      <p className="mt-2 text-left pt-2  font-medium">
                         From usage metrics to tracking, our web-based dashboard
                         offers a comprehensive view of your operations, making
                         invoice management a breeze.{" "}
@@ -999,7 +1021,7 @@ window.addEventListener("load", function () {
                       <h3 className="text-lg text-left font-bold mt-3">
                         AI-Enhanced Precision in Mobile Number Identification
                       </h3>
-                      <p className="mt-2 pt-2 text-left text-sm">
+                      <p className="mt-2 pt-2 text-left  font-medium">
                         Our futuristic AI-driven feature ensures invoices are
                         accurately delivered, championing efficiency in every
                         ‘Bill to WhatsApp’ endeavor.{" "}

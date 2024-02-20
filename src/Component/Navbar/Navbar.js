@@ -30,6 +30,9 @@ const Navbar = () => {
           <Link to="/pricing" className="p-4">
             Pricing
           </Link>
+          <Link to="/faqs" className="p-4">
+            FAQs
+          </Link>
           <Link to="https://app.invoicewala.com" className="p-4">
             Portal
           </Link>
@@ -49,16 +52,19 @@ const Navbar = () => {
             </div>
           </div>
           <div className="flex flex-col items-center justify-center h-full">
-            <Link to="/" className="p-4">
+            <Link onClick={toggleSidebar} to="/" className="p-4">
               Home
             </Link>
-            <Link to="/services" className="p-4">
-              Services
+            <Link onClick={toggleSidebar} to="/pricing" className="p-4">
+              Pricing
             </Link>
-            <Link to="/products" className="p-4">
-              Products
+            <Link onClick={toggleSidebar} to="/faqs" className="p-4">
+              FAQs
             </Link>
-            <Link to="/contact" className="p-4">
+            <Link onClick={toggleSidebar} to="https://app.invoicewala.com" className="p-4">
+              Portal
+            </Link>
+            <Link onClick={toggleSidebar} to="/contact" className="p-4">
               Contact
             </Link>
           </div>
