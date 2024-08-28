@@ -33,7 +33,7 @@ const Navbar = () => {
           <Link to="/faqs" className="p-4">
             FAQs
           </Link>
-          <Link to="https://app.invoicewala.com" className="p-4">
+          <Link to="http://invoicewala.in/app" className="p-4">
             Portal
           </Link>
           <Link to="/contact" className="p-4">
@@ -61,7 +61,11 @@ const Navbar = () => {
             <Link onClick={toggleSidebar} to="/faqs" className="p-4">
               FAQs
             </Link>
-            <Link onClick={toggleSidebar} to="https://app.invoicewala.com" className="p-4">
+            <Link
+              onClick={toggleSidebar}
+              to="http://invoicewala.in/app"
+              className="p-4"
+            >
               Portal
             </Link>
             <Link onClick={toggleSidebar} to="/contact" className="p-4">

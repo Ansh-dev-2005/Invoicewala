@@ -8,6 +8,7 @@ import Signup from './Pages/Signup/Signup';
 import Contactus from './Pages/Contact Us/Contactus';
 import Pricing from './Pages/Pricing/Pricing';
 import Faqs from './Pages/Faqs/Faqs';
+import PriyacyPolicy from './Pages/PriyacyPolicy';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/contact" element={<Contactus  />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/faqs" element={<Faqs />} />
+        <Route path="/privacy-policy" element={<PriyacyPolicy />} />
         {/* <Route path="/about" component={About} />
         <Route path="/contact" component={Contact} /> */}
       </Routes>

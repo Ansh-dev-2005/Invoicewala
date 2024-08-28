@@ -179,7 +179,7 @@ const Home = () => {
             Paper-less Multi channel Invoice sharing Platform{" "}
           </p>
           <Link
-            to="/signup"
+            to="http://invoicewala.in/register"
             className="btn  md:mt-10 z-10 text-center ml-auto mr-auto bg-gray-800 w-40 mt-4 text-white text-xl py-3 px-6 rounded-lg"
             style={{ display: "block", margin: "10 auto" }}
           >
